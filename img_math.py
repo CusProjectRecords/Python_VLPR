@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__author__ = '樱花落舞'
+
 import cv2
 import numpy as np
 
@@ -18,8 +18,6 @@ PROVINCE_START = 1000
 def img_read(filename):
     return cv2.imdecode(np.fromfile(filename, dtype=np.uint8), cv2.IMREAD_COLOR)
     # 以uint8方式读取filename 放入imdecode中，cv2.IMREAD_COLOR读取彩色照片
-
-
 
 
 def point_limit(point):
@@ -85,7 +83,8 @@ def img_findContours(img_contours):
 
     return car_contours
 
-#进行矩形矫正
+
+# 进行矩形矫正
 def img_Transform(car_contours, oldimg, pic_width, pic_hight):
     car_imgs = []
     for car_rect in car_contours:
@@ -202,7 +201,10 @@ def img_color(card_imgs):
         if color == "green":
             card_imgs[card_index] = card_img
         else:
-            card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[yl - (yh - yl) // 4:yh,xl:xr]
+            card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[
+                                                                                                           yl - (
+                                                                                                                       yh - yl) // 4:yh,
+                                                                                                           xl:xr]
 
         if need_accurate:
             card_img = card_imgs[card_index]
@@ -219,7 +221,10 @@ def img_color(card_imgs):
         if color == "green":
             card_imgs[card_index] = card_img
         else:
-            card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[yl - (yh - yl) // 4:yh,xl:xr]
+            card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[
+                                                                                                           yl - (
+                                                                                                                       yh - yl) // 4:yh,
+                                                                                                           xl:xr]
 
     return colors, card_imgs
 
@@ -244,7 +249,8 @@ def find_waves(threshold, histogram):
         wave_peaks.append((up_point, i))
     return wave_peaks
 
-#分离车牌字符
+
+# 分离车牌字符
 def seperate_card(img, waves):
     part_cards = []
     for wave in waves:

@@ -1,5 +1,5 @@
 # -*- coding: utf-8 -*-
-__author__ = '樱花落舞'
+
 import cv2
 import numpy as np
 from numpy.linalg import norm
@@ -8,6 +8,8 @@ SZ = 20  # 训练图片长宽
 MAX_WIDTH = 1000  # 原始图片最大宽度
 Min_Area = 2000  # 车牌区域允许最大面积
 PROVINCE_START = 1000
+
+
 # 来自opencv的sample，用于svm训练
 def deskew(img):
     m = cv2.moments(img)
@@ -76,6 +78,3 @@ provinces = [
     "zh_zang", "藏",
     "zh_zhe", "浙"
 ]
-
-
-

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-__author__ = '樱花落舞'
 import threading
 import time
 import tkinter as tk
