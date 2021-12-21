@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-__author__ = '樱花落舞'
 import cv2
 import numpy as np
 
-#用于中间环节对处理图像的输出
+
+# 用于中间环节对处理图像的输出
 
 def img_show(filename):
     if filename.dtype == "float32":
