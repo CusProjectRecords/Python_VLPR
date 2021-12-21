@@ -2,13 +2,13 @@
 
 # 用于中间环节对数据的传递
 
-class global_var:
+class GlobalName:
     name = None
 
 
 def set_name(name):
-    global_var.name = name
+    GlobalName.name = name
 
 
 def get_name():
-    return global_var.name
+    return GlobalName.name
