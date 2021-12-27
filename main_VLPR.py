@@ -164,6 +164,10 @@ class Surface(ttk.Frame):
     #     self.thread_run = True
 
     def from_pic(self):
+        """
+        点击’来自图片‘时触发函数, 弹出选择图片窗口, 根据图片识别车牌 \n
+        :return:
+        """
         self.thread_run = False
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
         if self.pic_path:
@@ -199,6 +203,10 @@ class Surface(ttk.Frame):
 
 
 def close_window():
+    """
+    关闭窗口时, 关闭启动的线程，释放资源 \n
+    :return:
+    """
     print("destroy")
     if surface.thread_run:
         surface.thread_run = False
