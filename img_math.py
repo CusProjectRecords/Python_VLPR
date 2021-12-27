@@ -16,8 +16,12 @@ PROVINCE_START = 1000
 
 
 def img_read(filename):
+    """
+    以uint8方式读取filename 放入imdecode中，cv2.IMREAD_COLOR读取彩色照片 \n
+    :param filename:
+    :return:
+    """
     return cv2.imdecode(np.fromfile(filename, dtype=np.uint8), cv2.IMREAD_COLOR)
-    # 以uint8方式读取filename 放入imdecode中，cv2.IMREAD_COLOR读取彩色照片
 
 
 def point_limit(point):
@@ -203,7 +207,7 @@ def img_color(card_imgs):
         else:
             card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[
                                                                                                            yl - (
-                                                                                                                       yh - yl) // 4:yh,
+                                                                                                                   yh - yl) // 4:yh,
                                                                                                            xl:xr]
 
         if need_accurate:
@@ -223,7 +227,7 @@ def img_color(card_imgs):
         else:
             card_imgs[card_index] = card_img[yl:yh, xl:xr] if color != "green" or yl < (yh - yl) // 4 else card_img[
                                                                                                            yl - (
-                                                                                                                       yh - yl) // 4:yh,
+                                                                                                                   yh - yl) // 4:yh,
                                                                                                            xl:xr]
 
     return colors, card_imgs
