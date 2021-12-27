@@ -11,6 +11,7 @@ from threading import Thread
 from tkinter import ttk
 from tkinter.filedialog import *
 from PIL import Image, ImageTk
+from tkinter.constants import *
 
 
 class ThreadWithReturnValue(Thread):
@@ -54,7 +55,7 @@ class Surface(ttk.Frame):
         ttk.Label(frame_right1, text='形状定位车牌位置：').grid(column=0, row=0, sticky=tk.W)
 
         from_pic_ctl = ttk.Button(frame_right2, text="来自图片", width=20, command=self.from_pic)
-        from_vedio_ctl = ttk.Button(frame_right2, text="来自摄像头", width=20, command=self.from_vedio)
+        # from_video_ctl = ttk.Button(frame_right2, text="来自摄像头", width=20, command=self.from_video)
         from_img_pre = ttk.Button(frame_right2, text="查看形状预处理图像", width=20, command=self.show_img_pre)
         self.image_ctl = ttk.Label(frame_left)
         self.image_ctl.pack(anchor="nw")
@@ -66,7 +67,7 @@ class Surface(ttk.Frame):
         self.r_ctl.grid(column=0, row=3, sticky=tk.W)
         self.color_ctl = ttk.Label(frame_right1, text="", width="20")
         self.color_ctl.grid(column=0, row=4, sticky=tk.W)
-        from_vedio_ctl.pack(anchor="se", pady="5")
+        # from_video_ctl.pack(anchor="se", pady="5")
         from_pic_ctl.pack(anchor="se", pady="5")
         from_img_pre.pack(anchor="se", pady="5")
 
@@ -143,20 +144,20 @@ class Surface(ttk.Frame):
         if filename.any():
             debug.img_show(filename)
 
-    #摄像头功能未实现
-    def from_vedio(self):
-        if self.thread_run:
-            return
-        if self.camera is None:
-            self.camera = cv2.VideoCapture(0)
-            if not self.camera.isOpened():
-                mBox.showwarning('警告', '摄像头打开失败！')
-                self.camera = None
-                return
-        self.thread = threading.Thread(target=self.vedio_thread, args=(self,))
-        self.thread.setDaemon(True)
-        self.thread.start()
-        self.thread_run = True
+    # 摄像头功能未实现
+    # def from_video(self):
+    #     if self.thread_run:
+    #         return
+    #     if self.camera is None:
+    #         self.camera = cv2.VideoCapture(0)
+    #         if not self.camera.isOpened():
+    #             mBox.showwarning('警告', '摄像头打开失败！')
+    #             self.camera = None
+    #             return
+    #     self.thread = threading.Thread(target=self.video_thread, args=(self,))
+    #     self.thread.setDaemon(True)
+    #     self.thread.start()
+    #     self.thread_run = True
 
     def from_pic(self):
         self.thread_run = False
@@ -179,7 +180,7 @@ class Surface(ttk.Frame):
             self.show_roi1(r_c, roi_c, color_c)
 
     @staticmethod
-    def vedio_thread(self):
+    def video_thread(self):
         self.thread_run = True
         predict_time = time.time()
         while self.thread_run:
