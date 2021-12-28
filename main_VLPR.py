@@ -171,6 +171,7 @@ class Surface(ttk.Frame):
         self.thread_run = False
         self.pic_path = askopenfilename(title="选择识别图片", filetypes=[("jpg图片", "*.jpg"), ("png图片", "*.png")])
         if self.pic_path:
+            # 读取一个图片文件
             img_bgr = img_math.img_read(self.pic_path)
             first_img, oldimg = self.predictor.img_first_pre(img_bgr)
             self.imgtk = self.get_imgtk(img_bgr)
@@ -217,7 +218,7 @@ def close_window():
 if __name__ == '__main__':
     win = tk.Tk()
     # 设定初始窗口大小与位置
-    win.geometry("800x600+100+50")
+    win.geometry("1080x600+100+50")
     surface = Surface(win)
     # close,退出输出destroy
     win.protocol('WM_DELETE_WINDOW', close_window)

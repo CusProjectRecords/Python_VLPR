@@ -108,6 +108,10 @@ class CardPredictor:
 
     def img_first_pre(self, car_pic_file):
         """
+        第一次预处理图片:
+        1) 缩小图片到指定大小（宽度1000，高度按比例缩小）; \n
+        2) 缩小后对图像降噪（基于二维离散卷积的高斯平滑）; \n
+        3) 灰度处理，生成车牌轮廓及其他的高亮区域轮廓的灰度图像 \n
         :param car_pic_file: 图像文件
         :return:已经处理好的图像文件 原图像文件
         """
@@ -138,7 +142,10 @@ class CardPredictor:
         # Otsu’s二值化 找到图像边缘
 
         Matrix = np.ones((4, 19), np.uint8)
+        # 进行一次闭运算
         img_edge1 = cv2.morphologyEx(img_edge, cv2.MORPH_CLOSE, Matrix)
+        # debug.img_show(img_edge1)
+        # 进行一次开运算 消除图像中细小亮点干扰区域
         img_edge2 = cv2.morphologyEx(img_edge1, cv2.MORPH_OPEN, Matrix)
         return img_edge2, oldimg
 
@@ -407,3 +414,12 @@ class CardPredictor:
             if color != "no":
                 print(color)
                 debug.img_show(car_imgs[i])
+
+
+if __name__ == '__main__':
+    CP = CardPredictor()
+    # CP.img_mser("test/Yes_img/2_1.png")
+    debug.img_show(img_math.img_read("test/Yes_img/1_1.jpg"))
+    img1, img2 = CP.img_first_pre("test/Yes_img/1_1.jpg")
+    debug.img_show(img1)
+    debug.img_show(img2)
