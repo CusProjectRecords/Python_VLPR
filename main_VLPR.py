@@ -182,10 +182,23 @@ class Surface(ttk.Frame):
             th2.start()
             r_c, roi_c, color_c = th1.join()
             r_color, roi_color, color_color = th2.join()
-            print(r_c, r_color)
+            # debug 线程输出
+            print('识别到的字符： ')
+            print( r_c)
+            print('车牌颜色： ')
+            print(color_c)
+            print('定位的车牌图像： (打开下面的注释)')
+            # debug.img_show(roi_c)
+            print('识别到的字符： ')
+            print(r_color)
+            print('车牌颜色： ')
+            print(color_color)
+            print('定位的车牌图像： (打开下面的注释)')
+            # debug.img_show(roi_color)
 
+            # 颜色定位车牌位置的结果
             self.show_roi2(r_color, roi_color, color_color)
-
+            # 形状定位车牌位置的结果
             self.show_roi1(r_c, roi_c, color_c)
 
     @staticmethod

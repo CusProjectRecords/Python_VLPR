@@ -151,9 +151,10 @@ class CardPredictor:
 
     def img_color_contours(self, img_contours, oldimg):
         """
+        根据车牌形状定位车牌，识别字符和颜色\n
         :param img_contours: 预处理好的图像
         :param oldimg: 原图像
-        :return: 已经定位好的车牌
+        :return: 识别到的字符、定位的车牌图像、车牌颜色
         """
 
         if img_contours.any():
@@ -261,9 +262,11 @@ class CardPredictor:
 
     def img_only_color(self, filename, oldimg, img_contours):
         """
+        根据颜色定位车牌，识别字符和颜色\n
+        :param img_contours:
         :param filename: 图像文件
         :param oldimg: 原图像文件
-        :return: 已经定位好的车牌
+        :return: 识别到的字符、定位的车牌图像、车牌颜色
         """
         pic_hight, pic_width = img_contours.shape[:2]
         lower_blue = np.array([100, 110, 110])
