@@ -32,6 +32,14 @@ def point_limit(point):
 
 
 def accurate_place(card_img_hsv, limit1, limit2, color):
+    """
+    校准位置\n
+    :param card_img_hsv:
+    :param limit1:
+    :param limit2:
+    :param color:
+    :return:
+    """
     row_num, col_num = card_img_hsv.shape[:2]
     xl = col_num
     xr = 0
@@ -69,6 +77,11 @@ def accurate_place(card_img_hsv, limit1, limit2, color):
 
 
 def img_findContours(img_contours):
+    """
+    过滤图像中所有可排除的轮廓图形, 缩小定位范围
+    :param img_contours:
+    :return:
+    """
     contours, hierarchy = cv2.findContours(img_contours, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)
     contours = [cnt for cnt in contours if cv2.contourArea(cnt) > Min_Area]
     print("findContours len = ", len(contours))
