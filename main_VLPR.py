@@ -143,7 +143,10 @@ class Surface(ttk.Frame):
             self.color_ct2.configure(state='disabled')
 
     def show_img_pre(self):
-
+        """
+        预览图片 \n
+        :return:
+        """
         filename = config.get_name()
         if filename.any():
             debug.img_show(filename)
